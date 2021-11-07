@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>{{ data.book ? 'Edit Book' : 'Add Book' }}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" class="form">
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Title</mat-label>
+            <input matInput required formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matInput required formControlName="description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Genre</mat-label>
+            <mat-select required formControlName="genre">
+                <mat-option *ngFor="let genre of data.genres" [value]="genre.key">
+                    {{ genre.value }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Author</mat-label>
+            <mat-select required formControlName="author">
+                <mat-option *ngFor="let author of data.authors" [value]="author.id">
+                    {{ author.firstName }} {{ author.lastName }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)=save()>{{ data.book ? 'Edit' : 'Add' }}</button>
+    <button class="margine-left" mat-raised-button (click)=cancel()>Cancel</button>
+</div>
